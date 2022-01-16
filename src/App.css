@@ -35,6 +35,13 @@ html {
   padding-top: .5rem;
   text-transform: capitalize;
 }
+.display{
+  color: rgb(228, 222, 222);
+  font-size: 1.8rem;
+  padding-top: .5rem;
+  text-transform: capitalize;
+  margin: auto;
+}
 
 input {
   /* display: block; */
@@ -226,4 +233,5 @@ input:focus {
   -webkit-transform: translateY(0) scale(1, 1);
   transform: translateY(0) scale(1, 1);
 } 
+
 

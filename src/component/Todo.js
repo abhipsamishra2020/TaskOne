@@ -14,12 +14,14 @@ const getLocalItems = () =>{
         return [];
     }
 }
-
 function Todo() {
     const[inputData,setInputData]=useState('');
     const[items,setItems]=useState(getLocalItems());
     const[toggleSubmit,setToggleSubmit] = useState(true);
     const[isEditItem,setIsEditItem]=useState(null);
+    const [count,setCount] = useState(0);
+    const [display,setDisplay] = useState();
+
     const addItem = ()=> {
         if(!inputData){
         }else if (inputData && !toggleSubmit){
@@ -35,20 +37,24 @@ function Todo() {
                setToggleSubmit(true);
                setInputData('');
                setIsEditItem(null);
+             
 
         } else{
           const allInputData = {id: new Date().getTime().toString(), name:inputData}  
        setItems([...items,allInputData]); 
        setInputData('')
+       setCount(count+1);
         }   
     }
+
 
     const deleteItem = (index)=>{
 
     const updateditems = items.filter((elem)=>{
     return index !== elem.id;
     });
-    setItems(updateditems);   
+    setItems(updateditems); 
+      
     }
    
     const editItem = (id)=>{
@@ -58,12 +64,18 @@ function Todo() {
      setToggleSubmit(false);
      setInputData(newEditItem.name);
      setIsEditItem(id);
+     setCount(count+1);
     }
 
 
 
     const removeAll=()=>{
         setItems([]); 
+    }
+
+    function showCount(){
+
+        setDisplay(count);
     }
     // add data to localStorage
   useEffect(() => {
@@ -109,6 +121,10 @@ function Todo() {
               </div>
               <div className='showItems'>
                  <button className='btn effect04' data-sm-link-text="Remove All" onClick={removeAll}><span>CHECK LIST</span></button>
+                 <button className='btn effect04'data-sm-link-text="CountAdd&Update" onClick={showCount}><span>Count</span></button>
+                 <br/>
+                 <h3 className='display'>Add and Update API called :- {display} </h3>
+                 
               </div>
             </div>
          </div>   
